@@ -6,18 +6,18 @@ namespace OOP_kortlek
 {
     class Program
     {
-        
-        //public List<Player> users = new List<Player>();
+        private static List<Player> users { get; set; }
+
         static void Main(string[] args)
         {
-            List<Player> users = new List<Player>();
-            Welcome(users);
+            users = new List<Player>();
+            Welcome();
             Console.WriteLine("main");
-            Deal(users);
+            Deal();
         }
-        static void Welcome(List<Player> users)
+
+        static void Welcome()
         {
-          
             int playerCount = 0;
             WriteLine("Welcome To card 21");
             WriteLine("How manny players are there? ");
@@ -37,7 +37,8 @@ namespace OOP_kortlek
                 users.Add(obj); 
             }
         }
-        static void Deal(List<Player> users)
+
+        static void Deal()
         {
             Console.WriteLine("deal");
             List<int> listOfCards = new List<int>();
