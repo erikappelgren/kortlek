@@ -61,6 +61,15 @@ namespace OOP_kortlek
                 WriteLine($"{i.Name}, your card are {cardNumber}\nWhat do you want to bet? Your scor is {i.Points}");
                 int anw = int.Parse(ReadLine());
                 i.Points -= anw;
+                if (cardNumber == 1)
+                {
+                    Console.WriteLine("You got an ace, do you want a 1 or 14?");
+                    int num = int.Parse(Console.ReadLine());
+                    if (num == 14)
+                    {
+                        cardNumber = 14;
+                    }
+                }
                 i.Cards.Add(cardNumber);
             }
             Deal();
@@ -77,21 +86,52 @@ namespace OOP_kortlek
                     index -= 1;
                     int cardNumber = listOfCards[index];
                     listOfCards.Remove(index);
+                    if(cardNumber == 1)
+                    {
+                        Console.WriteLine("You got an ace, do you want a 1 or 14?");
+                        int num = int.Parse(Console.ReadLine());
+                        if(num == 14)
+                        {
+                            cardNumber = 14;
+                        }
+                    }
+                    i.Cards.Add(cardNumber);
 
-                    WriteLine($"{i.Name}, your card are {cardNumber}\nWhat do you want to continue? Y/N ");
+                    
+
+                    WriteLine($"{i.Name}, your card are {cardNumber}\nYour total is {i.Cards.Sum()} ");
+                    if (i.Cards.Sum() == 21)
+                    {
+                        Console.WriteLine("White jack!!!!");
+                        Console.WriteLine("--------------------------");
+                        Console.WriteLine("");
+                        break;
+                    }
+
+                    else if (i.Cards.Sum() > 21)
+                    {
+                        Console.WriteLine("You're trash at this game");
+                        Console.WriteLine("--------------------------");
+                        Console.WriteLine("");
+                        break;
+                    }
+                    Console.WriteLine("What do you want to continue? Y/N");
+                    
+
                     string anw = ReadLine().ToLower();
                     if (anw == "y")
                     {
-                        i.Cards.Add(cardNumber);
+                        
                         WriteLine($"Your cards are: ");
                         foreach (var card in i.Cards)
                         {
                             WriteLine(card);
                         }
+                        Console.WriteLine($"Your total is {i.Cards.Sum()}");
                     }
                     else if (anw == "n")
                     {
-                        i.Cards.Add(cardNumber);
+                        
                         foreach (var card in i.Cards)
                         {
                             WriteLine($"Your cards are:\n{card} ");
@@ -102,6 +142,8 @@ namespace OOP_kortlek
                     {
                         WriteLine("You can only select Y or N ");
                     }
+
+                    
                 }
             }
 
