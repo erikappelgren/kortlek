@@ -6,15 +6,18 @@ namespace OOP_kortlek
 {
     class Program
     {
+        
         //public List<Player> users = new List<Player>();
         static void Main(string[] args)
         {
-            //Welcome();
-            Deal();
+            List<Player> users = new List<Player>();
+            Welcome(users);
+            Console.WriteLine("main");
+            Deal(users);
         }
-        static void Welcome()
+        static void Welcome(List<Player> users)
         {
-            //List<Player> users = new List<Player>();
+          
             int playerCount = 0;
             WriteLine("Welcome To card 21");
             WriteLine("How manny players are there? ");
@@ -24,7 +27,6 @@ namespace OOP_kortlek
             }
             catch {
                 Console.WriteLine("you fucked up");
-                Welcome(); 
             }
            
             for (int i = 0; i < playerCount; i++)
@@ -32,11 +34,12 @@ namespace OOP_kortlek
                 Console.WriteLine($"What is player {i} name?");
                 string playername = Console.ReadLine();
                 Player obj = new Player(100, playername);
-                //Player.users.Add(obj); FIXA
+                users.Add(obj); 
             }
         }
-        static void Deal()
+        static void Deal(List<Player> users)
         {
+            Console.WriteLine("deal");
             List<int> listOfCards = new List<int>();
             for(int i = 1; i < 14; i++)
             {
@@ -45,6 +48,7 @@ namespace OOP_kortlek
                 listOfCards.Add(i);
                 listOfCards.Add(i);
             }
+            
             //foreach(int card in listOfCards)
             //{
             //    Console.WriteLine(card);
@@ -54,8 +58,10 @@ namespace OOP_kortlek
             index -= 1;
             int cardNumber = listOfCards[index];
             listOfCards.Remove(index);
-
-            
+            foreach(Player i in users)
+            {
+                Console.WriteLine(i.Name);
+            }
         }
     }
     
