@@ -8,6 +8,7 @@ namespace OOP_kortlek
     {
         public int Points  { get; set; }
         public string Name { get; set; }
+        public List<int> Cards { get; set; }
 
         public Player()
         {
@@ -18,6 +19,7 @@ namespace OOP_kortlek
         {
             Points = points;
             Name = name;
+            Cards = new List<int>();
         }
     }
 }
